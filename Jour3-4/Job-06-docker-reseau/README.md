@@ -67,4 +67,4 @@ Pour manipuler la base de données en ligne de commande depuis le terminal :
 
 3. **Quitter le shell :** `exit`
 
-![quiter le shell](images/exit.png)
+![quiter mysql](images/exit.png)
