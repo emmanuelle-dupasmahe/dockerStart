@@ -1,0 +1,282 @@
+/* ==================================== */
+/* VARIABLES DE COULEUR ET RÉINITIALISATION */
+/* ==================================== */
+:root {
+    /*--color-background: #0d3b1c; */
+    background: #166616;
+    background: radial-gradient(circle, rgba(22, 102, 22, 1) 32%, rgba(67, 120, 88, 1) 100%); 
+    --color-text-primary: #f5f5f5; 
+    --color-accent: #DAA520;       
+    --color-accent-light: #FFD700; 
+    --color-border: #444;          
+    --font-primary: 'Georgia', serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* ==================================== */
+/* EN-TÊTE */
+/* ==================================== */
+header {
+    width: 70%;
+    text-align: center;
+    padding: 20px;
+    background-color: #025302;
+    border-bottom: 3px solid var(--color-accent);
+    border-radius: 15px; 
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.hero{
+    width: 70%;
+    text-align: center;
+    background-color: #025302;
+    border-bottom: 3px solid var(--color-accent);
+    /*border: 2px solid var(--color-accent);*/
+    padding: 10px;
+    border-radius: 15px
+}
+
+h1 {
+    font-size: 2.5em;
+    color: var(--color-accent-light);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: var(--color-accent-light);
+    margin-top: 20px;
+    margin-bottom: 15px;
+    /*border-bottom: 1px solid var(--color-border);*/
+    padding-bottom: 5px;
+}
+
+/* ==================================== */
+/* MAIN */
+/* ==================================== */
+main {
+    width: 90%;
+    max-width: 800px;
+    padding: 40px;
+    margin: 30px auto;
+
+    background: #184d18;
+    background: linear-gradient(181deg, rgba(24, 77, 24, 1) 32%, rgba(67, 120, 88, 1) 100%);
+
+    /*border: 1px solid var(--color-border);*/
+    border-bottom: 3px solid var(--color-accent);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+}
+
+/* ==================================== */
+/* FOOTER */
+/* ==================================== */
+footer {
+    width: 100%; 
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #066a1c; 
+    background-color: #FFD700;
+    margin-top: auto; 
+}
+
+/* ==================================== */
+/* FORMULAIRES (INSCRIPTION/CONNEXION/PROFIL/COMMENTAIRE) */
+/* ==================================== */
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--color-accent-light);
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-accent-light);
+    background-color: #014303;
+    color: var(--color-text-primary);
+    font-size: 1em;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--color-accent-light);
+    outline: none;
+}
+
+button[type="submit"] {
+    background-color: var(--color-accent-light);
+    color: #025302;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 25px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+button[type="submit"]:hover {
+    color: var(--color-accent-light);
+    background-color: #025302;
+    border: 1px solid var(--color-accent-light);
+    transform: translateY(-2px);
+}
+.note-profil {
+    font-size: 0.8em; 
+    font-weight: normal;
+    color: #AAAAAA; 
+    margin-left: 10px; 
+    display: inline-block; 
+}
+
+form h3 {
+    display: flex; 
+    align-items: baseline; 
+    margin-bottom: 10px; 
+}
+
+/* ==================================== */
+/* NAVIGATION ET LIENS */
+/* ==================================== */
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+nav a,
+main a {
+    color: var(--color-accent-light);
+    text-decoration: none;
+    transition: color 0.3s;
+    border: 1px solid transparent; 
+    border-radius: 8px;
+    font-size: 1.1em;           
+    font-weight: bold;         
+    padding: 5px 10px;          
+    border-bottom: 2px solid transparent;
+}
+
+nav a:hover,
+main a:hover {
+    color: var(--color-accent-light);
+    border-bottom: 2px solid var(--color-accent-light); 
+    text-decoration: none; 
+    border-color: var(--color-accent-light); 
+
+}
+
+/* ==================================== */
+/* STYLE THE LIVRE D'OR (les commentaires) */
+/* ==================================== */
+.commentaire-entry {
+    margin-bottom: 25px;
+    padding: 15px;
+    border: 1px solid var(--color-border);
+    border-left: 5px solid var(--color-accent); /* Bande dorée sur le côté */
+    border-right: 5px solid var(--color-accent); /* Bande dorée sur le côté */
+    background-color: #014303;
+    border-radius: 8px;
+}
+
+.button-action {
+    display: inline-block;
+    background-color: var(--color-accent-light); /* Utilise la couleur dorée */
+    color: #025302;
+    padding: 12px 25px;
+    margin: 15px 0 30px 0;
+    border: 2px solid var(--color-accent-light);
+    border-radius: 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none; /* Retire le soulignement */
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.button-action:hover {
+    background-color: #025302;
+    color: var(--color-accent-light);
+    border: 1px solid var(--color-accent-light);
+    transform: translateY(-2px); /* Petit effet de soulèvement au survol */
+}
+
+.commentaire-entry hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 10px 0;
+}
+
+.meta {
+    font-size: 0.9em;
+    color: var(--color-accent-light); 
+    margin-bottom: 10px;
+}
+
+.meta strong {
+    color: var(--color-accent-light);
+}
+
+.message-text {
+    font-style: italic;
+    color: var(--color-text-primary);
+    white-space: pre-wrap; /* Maintient les sauts de ligne */
+}
+
+/* ==================================== */
+/* MESSAGES (Erreur/Succès) */
+/* ==================================== */
+p[style*="color: red"] {
+    background-color: #4a1c1c;
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 4px;
+    color: white !important;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+p[style*="color: green"] {
+    background-color: #1c4a1c;
+    border: 1px solid green;
+    padding: 10px;
+    border-radius: 4px;
+    color: white !important;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
