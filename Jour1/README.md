@@ -14,9 +14,9 @@ docker run hello-world
 
 **Commande :**
 ```bash
-docker run -d -p 8088:80 --name welcome-to-docker docker/welcome-to-docker
+docker run -d -p 8080:80 --name welcome-to-docker docker/welcome-to-docker
 ```
-![hello-world](images/welcome_to_docker.png)
+![welcome to docker](images/welcome_to_docker.png)
 
 ---
 
@@ -43,7 +43,7 @@ Lister tous les conteneurs (actifs et arrêtés) :
 ```bash
 docker ps -a
 ```
-![listing ps](images/docker_ps_-a.png)
+![listing ps -a](images/docker_ps_-a.png)
 
 ## 💾 4. Gestion des images locales
 Pour voir la liste de tous les modèles d'applications (images) téléchargés sur la machine, on utilise la commande suivante :
@@ -52,7 +52,7 @@ Commande :
 ```bash
 docker images
 ```
-![listing ps](images/docker_images.png)
+![les images](images/docker_images.png)
 
 ## 🗑️ 5. Suppression d'un conteneur
 Une fois qu'un conteneur n'est plus utile (et qu'il est arrêté), il est préférable de le supprimer pour libérer des ressources.
@@ -60,7 +60,7 @@ Commande :
 ```bash
 docker rm 065f04d91dfa7de9a40c3f477d96ae106921805cbd2cd9f6eecb0bbaf05f598e
 ```
-![listing ps](images/docker_rm-id.png)
+![suppression](images/docker_rm-id.png)
 
 On n'est pas obligé de mettre l'ID en entier les 12 premiers caractères suffisent pour que docker l'identifie : 
 ```bash
@@ -75,14 +75,14 @@ Docker crée des réseaux isolés pour permettre aux conteneurs de communiquer. 
 ```bash
 docker network ls
 ```
-![listing ps](images/docker_network_ls.png)
+![network](images/docker_network_ls.png)
 
 ## 🛰️ 7. Déploiement d'un serveur Web Nginx
 Nous avons déployé un serveur Nginx, qui est un serveur HTTP haute performance, pour tester l'exposition de services web.
 ```bash
 docker run -d -p 8080:80 nginx
 ```
-![listing ps](images/nginx.png)
+![nginx](images/nginx.png)
 
 
 ## 📑 Récapitulatif des commandes 
