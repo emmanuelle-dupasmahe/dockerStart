@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Job 06</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>État de l'API (Job 06)</h1>
+    <div id="status">Chargement depuis le backend...</div>
+
+    <script>
+        // Interroge le backend Node.js
+        fetch('http://localhost:3000/api/status')
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('status').innerHTML = `✅ Connexion DB réussie ! <br> Heure MySQL : <b>${data.time}</b>`;
+                } else {
+                    document.getElementById('status').innerHTML = `❌ Erreur : ${data.message}`;
+                }
+            })
+            .catch(err => document.getElementById('status').innerHTML = "❌ Impossible de joindre le backend Node.js (Port 3000)");
+    </script>
+</body>
+
+</html>
