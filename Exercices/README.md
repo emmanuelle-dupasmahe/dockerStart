@@ -232,4 +232,47 @@ J'ai supprimé les tirets `-` pour conserver uniquement la syntaxe en dictionnai
 ---
 
 
+## 🏗️ Exercice 8 - FullStack (`ex8-fullstack`)
+
+### ❌ Problème initial
+Lors du lancement de la stack, deux problèmes survenaient : la page restait injoignable sur `http://localhost:8088` et le conteneur de l'API refusait de démarrer en indiquant qu'un réseau était introuvable.
+
+### 🔍 Explication technique
+1. **Erreur de port (Web) :** L'image `nginx:alpine` écoute par défaut sur le port **80** à l'intérieur du conteneur. Le fichier tentait de relier le port local 8088 au port `8080` du conteneur. Nginx n'écoutant pas sur ce port, la page était inaccessible.
+2. **Erreur de réseau (API) :** Le service `api` tentait de rejoindre un réseau nommé `apinet` (faute de frappe). Or, le réseau déclaré globalement à la fin du fichier et utilisé par le service web s'appelait `appnet`.
+
+### ✅ Correction apportée
+J'ai rétabli le bon port de destination (`80`) pour le service Nginx et j'ai corrigé le nom du réseau dans le service `api` pour utiliser `appnet`.
+
+**Avant correction :**
+```yaml
+  web:
+    # ...
+    ports:
+      - "8088:8080"
+  # ...
+  api:
+    # ...
+    networks:
+      - apinet
+```
+![avant correction](images/ex8_avant.png)
+
+
+**Après correction :**
+```yaml
+  web:
+    # ...
+    ports:
+      - "8088:80"
+  # ...
+  api:
+    # ...
+    networks:
+      - appnet
+```
+
+*La stack complète démarre désormais sans erreur et les deux conteneurs sont correctement reliés !*
+![apres correction](images/ex8_apres.png)
+
 ---

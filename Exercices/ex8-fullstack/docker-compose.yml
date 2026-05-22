@@ -9,7 +9,7 @@ services:
     image: nginx:alpine
     container_name: full_web
     ports:
-      - "8088:8080"
+      - "8088:80"
     networks:
       - appnet
 
@@ -18,7 +18,7 @@ services:
     container_name: full_api
     command: node -e "setInterval(()=>{},1000)"
     networks:
-      - apinet
+      - appnet
 
 networks:
   appnet:
