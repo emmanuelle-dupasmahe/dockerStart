@@ -8,8 +8,9 @@ services:
     container_name: blog_app
     ports:
       - "8082:80"
+
     depends_on:
-      - database
+      - db
 
   db:
     image: mysql:8
