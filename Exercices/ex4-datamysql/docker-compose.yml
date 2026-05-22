@@ -6,7 +6,7 @@ services:
   database:
     image: mysql:8
     container_name: data_mysql
-    environment
+    environment :
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: catalogue
     ports:
