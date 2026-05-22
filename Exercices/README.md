@@ -95,3 +95,70 @@ J'ai supprimé les espaces excédentaires pour réaligner la section `ports` au 
 *L'API Node.js démarre maintenant correctement, sans erreur de syntaxe !*
 ![apres correction](images/ex3_apres.png)
 ![apres correction](images/ex3_apres2.png)
+
+---
+
+## 🐬 Exercice 4 - DataMySQL (`ex4-datamysql`)
+
+### ❌ Problème initial
+Lors du lancement de la commande `docker compose up`, Docker Compose refusait de démarrer et renvoyait une erreur de syntaxe empêchant la lecture complète du fichier YAML.
+
+### 🔍 Explication technique
+En YAML, il ne doit y avoir aucun espace entre le nom d'une clé et les deux-points (`:`) qui la suivent. Dans le fichier `docker-compose.yml`, la directive `environment` était sans les deux-points (`environment:`).
+
+### ✅ Correction apportée
+J'ai ajouté les deux-points pour la clé `environment:`.
+
+**Avant correction :**
+```yaml
+    environment
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: catalogue
+```
+![avant correction](images/ex4_avant.png)
+
+**Après correction :**
+```yaml
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: catalogue
+```
+
+*La base de données MySQL démarre désormais correctement, sans erreur de syntaxe !*
+![apres correction](images/ex4_apres.png)
+![apres correction](images/ex4_apres2.png)
+
+---
+
+## 🔗 Exercice 5 - MultiStack (`ex5-multistack`)
+
+### ❌ Problème initial
+Lors du lancement de la commande `docker compose up`, Docker Compose renvoyait une erreur indiquant que le réseau `backnet` était introuvable.
+
+### 🔍 Explication technique
+Les services `frontend` et `backend` sont configurés pour utiliser un réseau personnalisé nommé `backnet`. Cependant, dans un fichier `docker-compose.yml`, tout réseau personnalisé utilisé dans les conteneurs doit obligatoirement être déclaré dans un bloc `networks:` principal (situé à la racine du fichier, au même niveau d'indentation que `services:`). Sans cette déclaration globale, Docker Compose refuse de démarrer car il ne sait pas qu'il doit créer le réseau.
+
+### ✅ Correction apportée
+J'ai ajouté le bloc principal `networks:` à la fin du fichier pour y déclarer explicitement le réseau `backnet`.
+
+**Avant correction (fin du fichier) :**
+```yaml
+    networks:
+      - backnet
+```
+![avant correction](images/ex5_avant.png)
+
+**Après correction (fin du fichier) :**
+```yaml
+    networks:
+      - backnet
+
+networks:
+  backnet:
+```
+
+*La stack démarre désormais correctement, et les deux conteneurs peuvent communiquer via leur réseau commun !*
+![apres correction](images/ex5_apres.png)
+![apres correction](images/ex5_apres2.png)
+
+---
