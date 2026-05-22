@@ -8,5 +8,5 @@ services:
     container_name: env_service
     command: node -e "console.log(process.env.APP_MODE)"
     environment:
-      - APP_MODE: production
-      - APP_PORT: 4000
+      APP_MODE: production
+      APP_PORT: 4000

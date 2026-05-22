@@ -193,3 +193,43 @@ volumes:
 
 
 ---
+
+## 🌿 Exercice 7 - EnvService (`ex7-envservice`)
+
+### ❌ Problème initial
+Lors du lancement de la commande `docker compose up`, Docker Compose refusait de démarrer et renvoyait une erreur de format sur la définition des variables d'environnement.
+
+### 🔍 Explication technique
+Dans un fichier `docker-compose.yml`, l'instruction `environment` accepte deux formats : 
+1. Un dictionnaire (mapping) : `CLE: valeur` (sans tiret)
+2. Une liste (array) : `- CLE=valeur` (avec tiret et signe égal)
+
+L'erreur consistait à mélanger ces deux syntaxes en mettant un tiret `-` devant des paires `clé: valeur`. Cela crée en YAML une "liste de dictionnaires", un format que Docker Compose ne supporte pas pour le bloc `environment`.
+
+### ✅ Correction apportée
+J'ai supprimé les tirets `-` pour conserver uniquement la syntaxe en dictionnaire (mapping).
+
+**Avant correction :**
+```yaml
+    environment:
+      - APP_MODE: production
+      - APP_PORT: 4000
+```
+![avant correction](images/ex7_avant.png)
+
+
+**Après correction :**
+```yaml
+    environment:
+      APP_MODE: production
+      APP_PORT: 4000
+```
+
+*Le conteneur démarre désormais correctement en chargeant bien ses variables d'environnement !*
+!apres correction
+![apres correction](images/ex7_apres.png)
+
+---
+
+
+---
