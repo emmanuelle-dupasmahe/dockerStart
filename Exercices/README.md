@@ -162,3 +162,34 @@ networks:
 ![apres correction](images/ex5_apres2.png)
 
 ---
+
+## 🗄️ Exercice 6 - CacheRedis (`ex6-cacheredis`)
+
+### ❌ Problème initial
+Lors du lancement de la commande `docker compose up`, Docker Compose renvoyait une erreur indiquant que le volume utilisé par le service n'était pas déclaré.
+!avant correction
+
+### 🔍 Explication technique
+Le bloc global des volumes à la fin du fichier déclarait un volume nommé `redis_data`. Cependant, le service `cache` tentait d'utiliser un volume mal orthographié nommé `redisdata` (sans le tiret du bas). Puisque les deux noms n'étaient pas strictement identiques, Docker Compose ne parvenait pas à faire la liaison.
+
+### ✅ Correction apportée
+J'ai corrigé le nom du volume dans la configuration du service `cache` pour qu'il corresponde exactement à celui déclaré globalement (`redis_data`).
+
+**Avant correction (dans le service `cache`) :**
+```yaml
+    volumes:
+      - redisdata:/data
+```
+![avant correction](images/ex6_avant.png)
+
+**Après correction (fin du fichier) :**
+```yaml
+volumes:
+  redis_data:
+```
+
+*Le conteneur Redis démarre désormais correctement, et ses données sont bien persistées dans le volume !*
+![apres correction](images/ex6_apres.png)
+
+
+---
