@@ -1,0 +1,33 @@
+services:
+  api:
+    build: ./api
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    
+    # Filesystem lecture seule
+    read_only: true
+    
+    # Zones d'écriture autorisées
+    volumes:
+      - type: tmpfs
+        target: /tmp
+        tmpfs:
+          mode: "1777"
+      
+    # Empêcher l'escalade de privilèges
+    security_opt:
+      - no-new-privileges:true
+      
+    # Restreindre les capabilities
+    cap_drop:
+      - ALL
+    # cap_add:
+    #   - NET_BIND_SERVICE # Optionnel ici car le port (3000) est > 1024 ne sert à rien
+      
+    # Limiter les ressources
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
