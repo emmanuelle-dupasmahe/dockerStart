@@ -48,3 +48,36 @@ il faut remplacer la directive tmpfs courte par la syntaxe longue des volumes
 <pre>Cannot GET /test-tmp</pre>
 </body>
 </html>
+
+dans le Dockerfile il faut changer CMD ["node", "src/server.js"] en CMD ["node", "src/config.js"]
+$ curl http://localhost:3000
+{"user":"appuser","uid":100,"gid":101,"hostname":"8d9f98b28d75","isRoot":false}
+$ curl http://localhost:3000/test-write
+{"result":"write_blocked","error":"EROFS"}
+Hp@DESKTOP-ODKCC2G MINGW64 /c/laragon/www/dockerStart/Jour6/job-03-securite (main)
+$ curl http://localhost:3000/test-tmp
+{"result":"write_succeeded"}
+
+avec la version non sécurisée :
+ curl http://localhost:3001
+{"user":"root","uid":0,"gid":0,"hostname":"2da985044161","isRoot":true}
+
+$ curl http://localhost:3001/test-write
+{"result":"write_succeeded","warning":"filesystem not read-only!"}
+
+
+ docker compose exec api sh -c 'apk add curl 2>&1 || echo "installation bloquée "'
+(1/9) Installing brotli-libs (1.2.0-r0)
+(2/9) Installing c-ares (1.34.6-r0)
+(3/9) Installing libunistring (1.4.1-r0)
+(4/9) Installing libidn2 (2.3.8-r0)
+(5/9) Installing nghttp2-libs (1.69.0-r0)
+(6/9) Installing libpsl (0.21.5-r3)
+(7/9) Installing zstd-libs (1.5.7-r2)
+(8/9) Installing libcurl (8.19.0-r0)
+(9/9) Installing curl (8.19.0-r0)
+Executing busybox-1.37.0-r30.trigger
+OK: 15.9 MiB in 27 packages
+
+no-new-privileges :
+Cette option ne sert pas à bloquer les commandes d'installation. Elle sert uniquement à empêcher un processus d'acquérir de nouveaux droits en cours de route. Par exemple, elle empêcherait un pirate d'utiliser une commande comme sudo ou su pour tenter de redevenir "root" à l'intérieur du conteneur.

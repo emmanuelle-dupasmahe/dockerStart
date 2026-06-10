@@ -13,7 +13,7 @@ services:
       - type: tmpfs
         target: /tmp
         tmpfs:
-          mode: "1777"
+          mode: 1023
       
     # Empêcher l'escalade de privilèges
     security_opt:
